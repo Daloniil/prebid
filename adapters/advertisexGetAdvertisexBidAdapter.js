@@ -3,15 +3,10 @@ import { registerBidder } from '../src/adapters/bidderFactory.js';
 import { BANNER } from '../src/mediaTypes.js';
 
 const BIDDER_CODE = 'advertisexGetAdvertisexBid';
-
 const ADAPTER_VERSION = '1.0';
-
 const DEFAULT_BID_TTL = 360;
-
 const DEFAULT_CURRENCY = 'USD';
-
 const ADVERTISEX_REQUEST_METHOD = 'POST';
-
 const ADVERTISEX_BID_ENDPOINT = 'http://localhost:3000/api/getAdvertisexBid';
 
 function parseBid(response, requestData) {

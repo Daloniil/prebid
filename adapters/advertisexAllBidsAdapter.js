@@ -2,25 +2,13 @@ import { logInfo } from '../src/utils.js';
 import { registerBidder } from '../src/adapters/bidderFactory.js';
 import { BANNER } from '../src/mediaTypes.js';
 
-// Bidder code for AdvertiseX
 const BIDDER_CODE = 'advertisexAllBids';
-
-// Adapter version
 const ADAPTER_VERSION = '1.0';
-
-// Default Bid TTL
 const DEFAULT_BID_TTL = 360;
-
-// Default currency
 const DEFAULT_CURRENCY = 'USD';
-
-// Request method
 const ADVERTISEX_REQUEST_METHOD = 'GET';
-
-// Endpoint URL for fetching all bids
 const ADVERTISEX_BID_ENDPOINT = 'http://localhost:3000/api/bids';
 
-// Parse Bid response object
 function parseBid(response, requestData) {
     return {
         requestId: requestData.bidId,
@@ -37,7 +25,6 @@ function parseBid(response, requestData) {
     };
 }
 
-// Define the spec object containing bidder implementation
 const spec = {
     code: BIDDER_CODE,
     version: ADAPTER_VERSION,
