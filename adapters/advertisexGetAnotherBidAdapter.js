@@ -40,6 +40,7 @@ const spec = {
     },
 
     buildRequests: function (bidRequests, bidderRequest) {
+        console.log(bidRequests, bidderRequest)
         return bidRequests.map(bid => {
             const data = {
                 adUnitCode: bid.params.adUnitCode,

@@ -4,7 +4,7 @@ const adBlockData = [
     {
         title: "AdvertiseX GetAdvertisexBid",
         code: "advertisex-block-1",
-        sizes: [[300, 250]],
+        sizes: [[300, 150]],
         bidder: "advertisexGetAdvertisexBid",
         params: {
             adUnitCode: "123qwe"
@@ -13,7 +13,7 @@ const adBlockData = [
     {
         title: "AdvertiseX GetAnotherBid",
         code: "advertisex-block-2",
-        sizes: [[728, 90]],
+        sizes: [[728, 110]],
         bidder: "advertisexGetAnotherBid",
         params: {
             adUnitCode: "456asd"
@@ -22,7 +22,7 @@ const adBlockData = [
     {
         title: "AdvertiseX All Bids",
         code: "advertisex-block-3",
-        sizes: [[300, 250]],
+        sizes: [[300, 550]],
         bidder: "advertisexAllBids",
         params: {
             adUnitCode: "101uvw"
@@ -46,11 +46,12 @@ const adUnits = adBlockData.map(block => ({
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.body;
     adBlockData.forEach(block => {
+        const [width, height] = block.sizes[0];
         const adContainer = document.createElement("div");
         adContainer.className = "ad-container";
         adContainer.innerHTML = `
             <h2 class="text-center">${block.title}</h2>
-            <div id="${block.code}"></div>
+            <div id="${block.code}" class="ad-content" style="border: 1px solid black; padding: 10px; width: ${width}px; height: ${height}px;"></div>
         `;
         container.appendChild(adContainer);
 
@@ -79,9 +80,12 @@ function initAdserver() {
         if (adDiv) {
             var bidResponse = pbjs.getBidResponsesForAdUnitCode(block.code);
             if (bidResponse && bidResponse.bids && bidResponse.bids.length > 0) {
-                if (block.code === 'advertisex-block-3') {
-                    bidResponse.bids.forEach(function(bid) {
-                        adDiv.innerHTML += bid.ad + '<hr>';
+                if (bidResponse.bids.length > 1) {
+                    bidResponse.bids.forEach(function(bid, index, array) {
+                        adDiv.innerHTML += bid.ad;
+                        if (index < array.length - 1) {
+                            adDiv.innerHTML += '<hr>';
+                        }
                     });
                 } else {
                     var bid = bidResponse.bids[0];

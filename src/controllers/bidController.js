@@ -68,7 +68,7 @@ const getAdvertisexBid = (req, res) => {
 
 const getAnotherBid = (req, res) => {
     try {
-        res.json(bids[1]);
+        res.json(bids[2]);
     } catch (error) {
         console.error('Error handling /getAnotherBid request:', error);
         res.status(500).json({ error: 'Internal Server Error' });
